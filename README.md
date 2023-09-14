@@ -15,12 +15,12 @@ skills. Each one of these skills will be used on a weekly basis, if not a daily 
 
 
 **Note:** Feel free to use documentation, articles, and/or videos on the topics here; just like you would do in such a
-position in daily work. This is **NOT** a knowledge test. 
+position in daily work. This is **NOT** a knowledge test.
 
 
 ### Setup
 
-Fork the repo `joseph-flinn/bw-devops-exercise` and keep it private.
+Fork the `bitwarden/devops-exercise` repo
 
 Proceed to the exercises in `/exercises`
 
