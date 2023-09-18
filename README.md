@@ -24,6 +24,8 @@ Fork the `bitwarden/devops-exercise` repo
 
 Proceed to the exercises in `/exercises`
 
+Once finished with the exercise, add `joseph-flinn` as a collaborator on the fork
+
 
 ---
 
