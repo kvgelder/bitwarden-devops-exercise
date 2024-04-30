@@ -20,6 +20,12 @@ jobs:
         with: 
           python-version: '3.11'
 
+      - name: Install pipenv
+        run: pip install --user pipenv
+      
+      - name: Add pipenv to PATH
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+
       - name: Setup dependencies
         run: |
           pipenv install
