@@ -1,0 +1,31 @@
+name: Run tests on each push to a pull request
+# run-name: 
+
+# Run when the synchronize event is being triggered on a pull request.
+on: 
+  pull_request:
+    types:
+      - synchronize
+    branches: 
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions?checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with: 
+          python-version: '3.11.3-slim'
+
+      - name: Setup dependencies
+        run: |
+          pipenv install
+          pipenv install --dev
+          
+      - name: Test with pytest
+        run: |
+          pytest tests/unit
