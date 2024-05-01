@@ -1,0 +1,45 @@
+# Verify changed files to check for changes in version.json?
+# Use json_reader to grab the new version from the version.json file.
+# 
+
+
+name: Versioning control
+
+on:
+  pull_request:
+    types: [synchronize]
+    branches:
+      - main
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.4
+        
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v19
+        id: verify-changed-files
+        with:
+          files: |
+            version.json
+            
+      - name: Check if version.json has changed
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        env:
+          CHANGED_FILES: ${{ steps.verify-changed-files.outputs.changed_files }}
+        run: |
+          echo "Changed files: $CHANGED_FILES"
+
+      - name: Get baseVersion from JSON
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        id: json_reader
+        run: |
+          value=$(jq -r '.baseVersion' path/to/your/file.json)
+          echo "baseVersion=$value" >> $GITHUB_ENV
+
+      - name: Use baseVersion
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        run: |
+          echo "The baseVersion is: $baseVersion"
